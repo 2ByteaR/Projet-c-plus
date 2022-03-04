@@ -117,9 +117,7 @@ public:
         {
             parcours = parcours->Getadresse();
         }
-        cout << "dzdz " << parcours->Getadresse() << " et vgrgrg " << parcours->GetDonnee() << endl;
         
-        free(parcours);
         free(parcours);
     }
 };

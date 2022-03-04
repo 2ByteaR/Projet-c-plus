@@ -1,22 +1,23 @@
 #include <iostream>
+using namespace std;
 
-class Arbre
+class ElArbre
 {
     private:
         double donnee;
-        Arbre *left;
-        Arbre *right;
+        ElArbre *left;
+        ElArbre *right;
 
     public:
 
-        Arbre(double donnee, Arbre *left, Arbre *right)
+        ElArbre(double donnee, ElArbre *left, ElArbre *right)
         {
             this->donnee = donnee;
             this->left = left;
             this->right = right;
         }
 
-        Arbre(double donnee){
+        ElArbre(double donnee){
             this->donnee = donnee;
             this->left = nullptr;
             this->right = nullptr;
@@ -32,25 +33,67 @@ class Arbre
             this->donnee = donnee;
         }
 
-        Arbre *GetRight() const
+        ElArbre *GetRight() const
         {
             return right;
         }
 
-        void SetRight(Arbre *arbre)
+        void SetRight(ElArbre *arbre)
         {
             this->right = arbre;
         }
         
-        Arbre *GetLeft() const
+        ElArbre *GetLeft() const
         {
             return left;
         }
 
-        void SetLeft(Arbre *arbre)
+        void SetLeft(ElArbre *arbre)
         {
             this->left = arbre;
         }
 
+
+        void afficher(){
+            cout << "L'arbre de gauche à pour adresse : " << left << "L'arbre de droite à pour adresse : " << right << "Il à comme donner" << donnee  << endl;
+        }
+
         
 };
+
+class SuiteArbre
+{
+    private:
+        ElArbre *pRacine;
+    public:
+
+    SuiteArbre(){
+        pRacine = nullptr;
+    }
+
+    SuiteArbre(ElArbre *pRacine){
+        pRacine = this->pRacine;
+    }
+
+    ElArbre *GetArbre() const
+    {
+        return pRacine;
+    }
+
+    void AjoutEnRacine(double donnee){
+
+        ElArbre *nouveau = new ElArbre(donnee, pRacine->GetLeft(),pRacine->GetRight());
+
+        pRacine = nouveau;
+    }
+    
+
+};
+
+
+int main(){
+    SuiteArbre SuiteArbre;
+    SuiteArbre.AjoutEnRacine(5);
+    SuiteArbre.AjoutEnRacine(7);
+    SuiteArbre.GetArbre()->afficher();
+}
