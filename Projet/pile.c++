@@ -27,7 +27,7 @@ class PileEl{
             this->value = value;
         }
 
-        void SetPile(PileEl *next){
+        void SetPileEl(PileEl *next){
             this->next = next;
         }
 };
@@ -35,68 +35,92 @@ class PileEl{
 class pile
 {
 private:
-    int value;
-    PileEl *element;
+    PileEl *pPremier;
 public:
     
-    pile(int value,PileEl *element){
-        this->value = value;
-        this->element = element;
+    pile(PileEl *pPremier){
+        this->pPremier = pPremier;
     };
-
-    pile(int value){
-        this->value = value;
-        this->element = NULL;
-    }
     
     pile(){
-        this->value = 0;
-        this->element = NULL;
+        this->pPremier = NULL;
     }
 
-    PileEl *GetPileEl(){
-        return element;
+    PileEl *GetPile(){
+        return pPremier;
+    }
+
+    void SetPile(PileEl *pSuivant){
+        this->pPremier = pSuivant;
     }
 
 
     void Empiler(int value){
         
-        PileEl *pileEl = new PileEl(value);
+        PileEl *pileEl = new PileEl(value,this->GetPile());
+        this->pPremier = pileEl;
+            
+    }
 
-        element = pileEl;
-        
+    void Depiler(){
+        PileEl *tamp = new PileEl(*(this->pPremier->GetPileEl()));
+        free(pPremier);
+        this->SetPile(tamp);
     }
 
     bool estVide(){
-        if (this->element->GetPileEl() == NULL)
+        if (this->GetPile() == NULL)
         {
             return true;
+        }else
+        {
+            return false;
         }
-        return false;
+        
+        
     }
 
     void AfficherPile(){
+        pile *tamp = new pile(pPremier);
 
-        if (this->estVide())
+        if (tamp->estVide())
         {
             
             cout << "Rien a afficher, la Pile est vide." << endl;
         }
         
-        while(!this->estVide()){
-		    cout <<"[" << this->element->GetValue() << "]" << endl;
-		    element = this->element->GetPileEl();
+        while(!tamp->estVide()){
+		    cout <<"[" << tamp->GetPile()->GetValue() << "]" << endl;
+		    *tamp = tamp->GetPile()->GetPileEl();
 	    }
+
+        if (tamp->estVide())
+        {
+            cout <<endl;
+        }
+        
+
+        free(&tamp);
     }
     
-    void test(){
-         cout << "Rien a afficher, la Pile est vide." << endl;
-    }
 };
 
 int main(int argc, char const *argv[]){
     
     pile pile;
+
     pile.Empiler(5);
+    pile.Empiler(7);
+    pile.Empiler(89);
     pile.AfficherPile();
+
+    pile.Depiler();
+    pile.AfficherPile();
+
+    pile.Depiler();
+    pile.AfficherPile();
+
+    free(&pile);
+    
+   
 }

@@ -44,7 +44,7 @@ public:
 
     void afficher()
     {
-        cout << "L'adresse est : " << adresse << " et voici la donnee " << donnee << endl;
+        cout << "[" << donnee << "]" << "->";
     }
 };
 
@@ -108,6 +108,7 @@ public:
             actuel->afficher();
             actuel = actuel->Getadresse();
         }
+        
     };
 
     void SupprEnQueue(){
