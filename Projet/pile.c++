@@ -1,112 +1,125 @@
 #include <iostream>
 using namespace std;
 
-class PileEl{
-    private:
-        int value;
-		struct PileEl *next;
-    public:
-        PileEl(int value){
-            this->next = nullptr;
-            this->value = value;
-        }
-        PileEl(int value, PileEl *next){
-            this->next = next;
-            this->value = value;
-        }
+class PileEl
+{
+private:
+    int value;
+    struct PileEl *next;
 
-        int GetValue(){
-            return this->value;
-        }
+public:
+    PileEl(int value)
+    {
+        this->next = nullptr;
+        this->value = value;
+    }
+    PileEl(int value, PileEl *next)
+    {
+        this->next = next;
+        this->value = value;
+    }
 
-        PileEl *GetPileEl(){
-            return this->next;
-        }
+    int GetValue()
+    {
+        return this->value;
+    }
 
-        void SetValue(int value){
-            this->value = value;
-        }
+    PileEl *GetPileEl()
+    {
+        return this->next;
+    }
 
-        void SetPileEl(PileEl *next){
-            this->next = next;
-        }
+    void SetValue(int value)
+    {
+        this->value = value;
+    }
+
+    void SetPileEl(PileEl *next)
+    {
+        this->next = next;
+    }
 };
 
 class pile
 {
 private:
     PileEl *pPremier;
+
 public:
-    
-    pile(PileEl *pPremier){
+    pile(PileEl *pPremier)
+    {
         this->pPremier = pPremier;
     };
-    
-    pile(){
+
+    pile()
+    {
         this->pPremier = NULL;
     }
 
-    PileEl *GetPile(){
+    PileEl *GetPile()
+    {
         return pPremier;
     }
 
-    void SetPile(PileEl *pSuivant){
+    void SetPile(PileEl *pSuivant)
+    {
         this->pPremier = pSuivant;
     }
 
+    void Empiler(int value)
+    {
 
-    void Empiler(int value){
-        
-        PileEl *pileEl = new PileEl(value,this->GetPile());
+        PileEl *pileEl = new PileEl(value, this->GetPile());
         this->pPremier = pileEl;
-            
     }
 
-    void Depiler(){
+    void Depiler()
+    {
         PileEl *tamp = new PileEl(*(this->pPremier->GetPileEl()));
         free(pPremier);
         this->SetPile(tamp);
     }
 
-    bool estVide(){
+    bool estVide()
+    {
         if (this->GetPile() == NULL)
         {
             return true;
-        }else
+        }
+        else
         {
             return false;
         }
-        
-        
     }
 
-    void AfficherPile(){
+    void AfficherPile()
+    {
         pile *tamp = new pile(pPremier);
 
         if (tamp->estVide())
         {
-            
+
             cout << "Rien a afficher, la Pile est vide." << endl;
         }
-        
-        while(!tamp->estVide()){
-		    cout <<"[" << tamp->GetPile()->GetValue() << "]" << endl;
-		    *tamp = tamp->GetPile()->GetPileEl();
-	    }
+
+        while (!tamp->estVide())
+        {
+            cout << "[" << tamp->GetPile()->GetValue() << "]" << endl;
+            *tamp = tamp->GetPile()->GetPileEl();
+        }
 
         if (tamp->estVide())
         {
-            cout <<endl;
+            cout << endl;
         }
-        
 
         free(&tamp);
     }
-    
 };
 
-int main(int argc, char const *argv[]){
-    
+int main(int argc, char const *argv[])
+{
+
     pile pile;
 
     pile.Empiler(5);
@@ -120,7 +133,6 @@ int main(int argc, char const *argv[]){
     pile.Depiler();
     pile.AfficherPile();
 
-    free(&pile);
-    
-   
+    pile.Empiler(8552);
+    pile.AfficherPile();
 }

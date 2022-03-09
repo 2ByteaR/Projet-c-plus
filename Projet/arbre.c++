@@ -1,8 +1,7 @@
 #include <iostream>
 using namespace std;
 
-class ElArbre
-{
+class ElArbre{
     private:
         double donnee;
         ElArbre *left;
@@ -53,11 +52,6 @@ class ElArbre
             this->left = arbre;
         }
 
-
-        void afficher(){
-            cout << "L'arbre de gauche à pour adresse : " << left << "L'arbre de droite à pour adresse : " << right << "Il à comme donner" << donnee  << endl;
-        }
-
         
 };
 
@@ -87,13 +81,15 @@ class SuiteArbre
         pRacine = nouveau;
     }
     
-
+    void afficher(){
+        cout << "L'arbre de gauche à pour adresse : " << this->GetArbre()->GetLeft() << "L'arbre de droite à pour adresse : " << this->GetArbre()->GetRight() << "Il à comme donner" << this->GetArbre()->GetDonnee() << endl;
+    }
 };
 
 
 int main(){
     SuiteArbre SuiteArbre;
     SuiteArbre.AjoutEnRacine(5);
-    SuiteArbre.AjoutEnRacine(7);
-    SuiteArbre.GetArbre()->afficher();
+    SuiteArbre.afficher();
+    
 }

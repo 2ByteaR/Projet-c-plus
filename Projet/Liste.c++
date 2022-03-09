@@ -131,7 +131,7 @@ int main()
     ch.AjoutEnTete(42);
     ch.AjoutEnTete(51);
     ch.AjoutEnQueue(39);
-    ch.SupprEnTete();
+
 
     ch.affiche();
 };
