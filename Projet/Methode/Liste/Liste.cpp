@@ -18,12 +18,12 @@ public:
         elch1 = element;
     }
 
-    Elch1 *GetElch1() const
+    Elch1 *getElch1() const
     {
         return elch1;
     }
 
-    void AjoutEnTete(double donnee)
+    void ajoutEnTete(double donnee)
     {
 
         Elch1 *nouveau = new Elch1(donnee, elch1);
@@ -31,25 +31,25 @@ public:
         elch1 = nouveau;
     };
 
-    void SupprEnTete(){
+    void supprEnTete(){
 
-        Elch1 *nouveau = elch1->Getadresse();
+        Elch1 *nouveau = elch1->getadresse();
         free(elch1);
         elch1 = nouveau;
 
     }
 
-    void AjoutEnQueue(double donnee)
+    void ajoutEnQueue(double donnee)
     {
         Elch1 *chaine = new Elch1(donnee,NULL);
         Elch1* parcours = this->elch1;
 
-        while (parcours->Getadresse() != NULL)
+        while (parcours->getadresse() != NULL)
         {
-            parcours = parcours->Getadresse();
+            parcours = parcours->getadresse();
         }
         
-        parcours->SetAdresse(chaine);
+        parcours->setAdresse(chaine);
     };
 
     void affiche()
@@ -60,17 +60,17 @@ public:
         while (actuel != NULL)
         {
             actuel->afficher();
-            actuel = actuel->Getadresse();
+            actuel = actuel->getadresse();
         }
         
     };
 
-    void SupprEnQueue(){
+    void supprEnQueue(){
 
         Elch1* parcours = this->elch1;
-        while (parcours->Getadresse() != NULL)
+        while (parcours->getadresse() != NULL)
         {
-            parcours = parcours->Getadresse();
+            parcours = parcours->getadresse();
         }
         
         free(parcours);

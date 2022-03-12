@@ -18,33 +18,33 @@ public:
         this->pPremier = NULL;
     }
 
-    Elch1 *GetPile()
+    Elch1 *getPile()
     {
         return pPremier;
     }
 
-    void SetPile(Elch1 *pSuivant)
+    void setPile(Elch1 *pSuivant)
     {
         this->pPremier = pSuivant;
     }
 
-    void Empiler(int value)
+    void empiler(int value)
     {
 
-        Elch1 *pileEl = new Elch1(value, this->GetPile());
+        Elch1 *pileEl = new Elch1(value, this->getPile());
         this->pPremier = pileEl;
     }
 
-    void Depiler()
+    void depiler()
     {
-        Elch1 *tamp = new Elch1(*(this->pPremier->Getadresse()));
+        Elch1 *tamp = new Elch1(*(this->pPremier->getadresse()));
         free(pPremier);
-        this->SetPile(tamp);
+        this->setPile(tamp);
     }
 
     bool estVide()
     {
-        if (this->GetPile() == NULL)
+        if (this->getPile() == NULL)
         {
             return true;
         }
@@ -54,7 +54,7 @@ public:
         }
     }
 
-    void AfficherPile()
+    void afficherPile()
     {
         Pile *tamp = new Pile(pPremier);
 
@@ -66,8 +66,8 @@ public:
 
         while (!tamp->estVide())
         {
-            cout << "[" << tamp->GetPile()->GetDonnee() << "]" << endl;
-            *tamp = tamp->GetPile()->Getadresse();
+            cout << "[" << tamp->getPile()->getDonnee() << "]" << endl;
+            *tamp = tamp->getPile()->getadresse();
         }
 
         if (tamp->estVide())

@@ -22,22 +22,22 @@ public:
         this->adresse = nullptr;
     }
 
-    double GetDonnee() const
+    double getDonnee() const
     {
         return donnee;
     }
 
-    void SetDonnee(double donnee)
+    void setDonnee(double donnee)
     {
         this->donnee = donnee;
     }
 
-    Elch1 *Getadresse() const
+    Elch1 *getadresse() const
     {
         return adresse;
     }
 
-    void SetAdresse(Elch1 *adresse)
+    void setAdresse(Elch1 *adresse)
     {
        
         this->adresse = adresse;

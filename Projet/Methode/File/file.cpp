@@ -11,24 +11,30 @@ public:
 
   File() { this->pPremier = NULL; }
 
-  Elch1 *GetFile() { return pPremier; }
+  Elch1 *getFile() { return pPremier; }
 
-  void SetFile(Elch1 *pSuivant) { this->pPremier = pSuivant; }
+  void setFile(Elch1 *pSuivant) { this->pPremier = pSuivant; }
 
-  void AjoutEnTete(int value) {
-    Elch1 *elch1 = new Elch1(value, this->GetFile());
+  void ajoutEnTete(int value) {
+    Elch1 *elch1 = new Elch1(value, this->getFile());
     this->pPremier = elch1;
   }
 
-  void RetraitEnQueue() {
-    //A FAIRE
+  void retraitEnQueue() {
+    Elch1* parcours = this->getFile();
+        while (parcours->getadresse() != NULL)
+        {
+            parcours = parcours->getadresse();
+        }
+        
+        free(parcours);
   }
 
   bool estVide() {
-    return this->GetFile() == NULL ? true : false;
+    return this->getFile() == NULL ? true : false;
   }
 
-  void AfficherFile() {
+  void afficherFile() {
     File *tamp = new File(pPremier);
 
     if (tamp->estVide()) {
@@ -36,8 +42,8 @@ public:
     }
 
     while (!tamp->estVide()) {
-      cout << "[" << tamp->GetFile()->GetDonnee() << "]" << endl;
-      *tamp = tamp->GetFile()->Getadresse();
+      cout << "[" << tamp->getFile()->getDonnee() << "]" << endl;
+      *tamp = tamp->getFile()->getadresse();
     }
 
     if (tamp->estVide()) {
